@@ -1,62 +1,399 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victor Kipruto Rop | Data Engineer & FinTech Builder</title>
-    <meta name="description" content="Building scalable data platforms, streaming systems, and real-time financial technology solutions.">
+    <title>Publications | Victor Kipruto Rop - Data Engineer</title>
+    <meta name="description" content="Technical articles, engineering research, and architecture deep dives on Data Engineering, FinTech, and Distributed Systems.">
+    
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Base Styles (Assuming integration with previous architecture) -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* =========================================
+           Premium Page-Specific CSS
+           ========================================= */
+        :root {
+            --surface-glass: rgba(20, 20, 22, 0.6);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --glow-accent: rgba(99, 102, 241, 0.15);
+            --text-muted: #888888;
+        }
+
+        /* Ambient Particle Background */
+        .ambient-mesh {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(255,255,255,0.02) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(99,102,241,0.03) 0%, transparent 50%);
+            z-index: -2; pointer-events: none;
+        }
+
+        /* Animations */
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Publication Hero */
+        .pub-hero { text-align: center; padding: 180px 20px 80px; max-width: 800px; margin: 0 auto; }
+        .pub-hero h1 { font-size: clamp(3rem, 6vw, 4.5rem); letter-spacing: -0.04em; margin-bottom: 24px; background: linear-gradient(180deg, #fff, #a1a1aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .pub-hero p { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7; }
+
+        /* KPI Statistics Grid */
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 40px 0 80px; }
+        .kpi-card { background: var(--surface-glass); backdrop-filter: blur(10px); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 24px; text-align: center; transition: var(--transition-smooth); }
+        .kpi-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+        .kpi-value { font-size: 2rem; font-weight: 700; color: var(--text-primary); font-family: var(--font-mono); margin-bottom: 4px; }
+        .kpi-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Search & Filters */
+        .filter-section { margin-bottom: 60px; }
+        .search-bar { width: 100%; max-width: 600px; margin: 0 auto 32px; position: relative; }
+        .search-bar input { width: 100%; background: var(--surface-glass); border: 1px solid var(--border-glass); color: var(--text-primary); padding: 16px 24px 16px 48px; border-radius: 30px; font-size: 1rem; outline: none; transition: var(--transition-smooth); backdrop-filter: blur(10px); }
+        .search-bar input:focus { border-color: rgba(255,255,255,0.3); box-shadow: 0 0 20px var(--glow-accent); }
+        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        
+        .categories-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 12px; scrollbar-width: none; }
+        .categories-scroll::-webkit-scrollbar { display: none; }
+        .cat-pill { padding: 8px 16px; background: transparent; border: 1px solid var(--border-glass); border-radius: 20px; color: var(--text-secondary); font-size: 0.85rem; cursor: pointer; white-space: nowrap; transition: var(--transition-smooth); }
+        .cat-pill:hover, .cat-pill.active { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+
+        /* Publication Cards */
+        .featured-card { display: flex; flex-direction: column; background: var(--surface-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 60px; transition: var(--transition-smooth); }
+        @media (min-width: 768px) { .featured-card { flex-direction: row; } }
+        .featured-card:hover { border-color: rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .f-image { width: 100%; height: 250px; background: linear-gradient(45deg, #1a1a1a, #0a0a0a); position: relative; overflow: hidden; }
+        @media (min-width: 768px) { .f-image { width: 50%; height: auto; } }
+        .f-content { padding: 40px; width: 100%; display: flex; flex-direction: column; justify-content: center; }
+        @media (min-width: 768px) { .f-content { width: 50%; } }
+
+        /* Badges */
+        .badges { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .badge { font-size: 0.7rem; padding: 4px 10px; border-radius: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-mono); }
+        .b-advanced { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
+        .b-category { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid var(--border-glass); }
+
+        /* Card Meta */
+        .card-meta { display: flex; align-items: center; gap: 16px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; font-family: var(--font-mono); flex-wrap: wrap; }
+        .card-meta span { display: flex; align-items: center; gap: 6px; }
+
+        /* Grid Cards */
+        .pub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; margin-bottom: 80px; }
+        .pub-card { background: var(--surface-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-smooth); }
+        .pub-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.2); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+        .p-image { height: 180px; background: linear-gradient(135deg, #111, #050505); border-bottom: 1px solid var(--border-glass); }
+        .p-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+        
+        /* Action Bar */
+        .card-actions { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 24px; border-top: 1px solid var(--border-glass); }
+        .action-icons { display: flex; gap: 12px; color: var(--text-muted); }
+        .icon-btn { background: none; border: none; color: inherit; cursor: pointer; transition: color 0.2s; display: flex; align-items: center; gap: 4px; font-size: 0.85rem; }
+        .icon-btn:hover { color: var(--text-primary); }
+
+        /* Journey Timeline */
+        .timeline { position: relative; padding-left: 32px; margin: 40px 0 80px; border-left: 1px solid var(--border-glass); }
+        .t-item { position: relative; margin-bottom: 32px; }
+        .t-item::before { content: ''; position: absolute; left: -37px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg-primary); border: 2px solid var(--text-primary); box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .t-year { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
+
+        /* Author Profile & Newsletter */
+        .author-card, .newsletter-card { background: linear-gradient(180deg, rgba(25,25,25,0.5), rgba(10,10,10,0.5)); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 40px; margin-bottom: 40px; display: flex; gap: 32px; flex-wrap: wrap; align-items: center; }
+        .a-avatar { width: 120px; height: 120px; border-radius: 50%; background: var(--border-glass); border: 2px solid rgba(255,255,255,0.1); }
+        .a-details { flex: 1; min-width: 280px; }
+        .a-title { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px; }
+        .a-links { display: flex; gap: 12px; margin-top: 24px; }
+        
+        .newsletter-input { display: flex; gap: 12px; width: 100%; max-width: 500px; margin-top: 24px; }
+        .newsletter-input input { flex: 1; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); color: white; padding: 12px 20px; border-radius: var(--radius-sm); outline: none; }
+        .newsletter-input input:focus { border-color: rgba(255,255,255,0.3); }
+    </style>
 </head>
 <body>
-    <div class="ambient-glow"></div>
+    <div class="ambient-mesh"></div>
 
+    <!-- Navigation (Assuming global nav) -->
     <header class="glass-nav">
         <nav class="nav-container">
             <a href="/" class="brand-logo">VKR.</a>
             <div class="nav-links">
-                <a href="/publications.html">Publications</a>
+                <a href="/">Home</a>
+                <a href="/publications.html" class="active">Publications</a>
                 <a href="/projects.html">Projects</a>
-                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
             </div>
-            <a href="/publications.html" class="btn-primary">Read Latest</a>
         </nav>
     </header>
 
     <main class="container">
-        <section class="hero">
-            <div class="status-badge">
-                <span class="pulse"></span> Deploying robust data infrastructure
+        <!-- Hero Section -->
+        <section class="pub-hero fade-in">
+            <h1>Engineering Publications</h1>
+            <p>A curated collection of technical articles, engineering research, architecture deep dives, and case studies focused on Data Engineering, FinTech, Cloud Infrastructure, and Distributed Systems.</p>
+        </section>
+
+        <!-- KPI Statistics -->
+        <section class="kpi-grid fade-in">
+            <div class="kpi-card">
+                <div class="kpi-value" data-target="42">0</div>
+                <div class="kpi-label">Publications</div>
             </div>
-            <h1 class="hero-title">Engineering the Future of <br><span class="gradient-text">Financial Infrastructure.</span></h1>
-            <p class="hero-subtitle">
-                Data Engineer, FinTech Infrastructure Builder, and Data Science student. Specializing in scalable data platforms, streaming systems, cloud architecture, and real-time solutions.
-            </p>
-            <div class="hero-actions">
-                <a href="#latest-writing" class="btn-primary">Explore Writing</a>
-                <a href="#project-showcase" class="btn-secondary">View Case Studies</a>
+            <div class="kpi-card">
+                <div class="kpi-value" data-target="15000">0</div>
+                <div class="kpi-label">Total Readers</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value" data-target="18">0</div>
+                <div class="kpi-label">Categories</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value" data-target="12">0</div>
+                <div class="kpi-label">Avg Read (Min)</div>
             </div>
         </section>
 
-        <section id="latest-writing" class="section-padding">
-            <div class="section-header">
-                <h2>Latest Publications</h2>
+        <!-- Search & Filters -->
+        <section class="filter-section fade-in">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search architecture deep dives, tutorials, case studies...">
             </div>
-            <div class="grid" id="publications-grid">
-                <!-- Injected via JavaScript -->
+            <div class="categories-scroll">
+                <button class="cat-pill active">All</button>
+                <button class="cat-pill">Data Engineering</button>
+                <button class="cat-pill">FinTech</button>
+                <button class="cat-pill">Apache Kafka</button>
+                <button class="cat-pill">Python</button>
+                <button class="cat-pill">Cloud Computing</button>
+                <button class="cat-pill">System Design</button>
+                <button class="cat-pill">Machine Learning</button>
             </div>
         </section>
 
-        <section id="project-showcase" class="section-padding">
-            <div class="section-header">
-                <h2>Infrastructure Projects</h2>
+        <!-- Featured Publication -->
+        <section class="fade-in">
+            <h2 class="section-header" style="margin-bottom: 24px;">Featured Deep Dive</h2>
+            <article class="featured-card">
+                <div class="f-image">
+                    <!-- Placeholder for architectural diagram -->
+                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.1); font-size: 4rem;">❖</div>
+                </div>
+                <div class="f-content">
+                    <div class="badges">
+                        <span class="badge b-advanced">Advanced</span>
+                        <span class="badge b-category">System Design</span>
+                        <span class="badge b-category">FinTech</span>
+                    </div>
+                    <h3 style="font-size: 2rem; margin-bottom: 16px; line-height: 1.2;">Architecting Resilient FinTech Infrastructure: Lessons from PesaGuard</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 1.05rem;">An exhaustive breakdown of engineering highly available, secure transaction pipelines. Exploring the integration of minimalist interfaces with real-time financial data visualization, and ensuring zero-downtime deployments.</p>
+                    
+                    <div class="card-meta">
+                        <span>📅 Aug 24, 2026</span>
+                        <span>⏱️ 14 min read</span>
+                        <span>👁️ 2.4k views</span>
+                    </div>
+
+                    <div class="card-actions">
+                        <div class="action-icons">
+                            <button class="icon-btn">❤️ 156</button>
+                            <button class="icon-btn">🔖 Save</button>
+                            <button class="icon-btn">📤 Share</button>
+                        </div>
+                        <a href="/article.html?post=pesaguard" class="btn-primary" style="font-size: 0.85rem;">Read Article &rarr;</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Latest Publications Grid -->
+        <section class="fade-in">
+            <h2 class="section-header" style="margin-bottom: 32px;">Latest Publications</h2>
+            <div class="pub-grid">
+                
+                <!-- Card 1 -->
+                <article class="pub-card">
+                    <div class="p-image"></div>
+                    <div class="p-content">
+                        <div class="badges">
+                            <span class="badge b-category">Data Engineering</span>
+                            <span class="badge b-category">Apache Kafka</span>
+                        </div>
+                        <h3 style="font-size: 1.2rem; margin: 12px 0;">Event-Driven Ingestion at Scale</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px;">Implementing idempotent producers in Python to guarantee data consistency across distributed streaming environments.</p>
+                        
+                        <div class="card-meta" style="font-size: 0.75rem;">
+                            <span>📅 Aug 01, 2026</span>
+                            <span>⏱️ 8 min read</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <div class="action-icons">
+                                <button class="icon-btn">❤️ 89</button>
+                            </div>
+                            <a href="/article.html?post=data-engineering-at-scale" class="btn-secondary" style="font-size: 0.8rem; padding: 6px 12px;">Read</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="pub-card">
+                    <div class="p-image"></div>
+                    <div class="p-content">
+                        <div class="badges">
+                            <span class="badge b-category">Cloud</span>
+                            <span class="badge b-category">CI/CD</span>
+                        </div>
+                        <h3 style="font-size: 1.2rem; margin: 12px 0;">Automating Zero-Downtime Deployments</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px;">A case study on the WorkNest infrastructure, utilizing GitHub Actions, Docker, and dual-provider cloud hosting strategies.</p>
+                        
+                        <div class="card-meta" style="font-size: 0.75rem;">
+                            <span>📅 Jul 15, 2026</span>
+                            <span>⏱️ 10 min read</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <div class="action-icons">
+                                <button class="icon-btn">❤️ 112</button>
+                            </div>
+                            <a href="/article.html?post=worknest" class="btn-secondary" style="font-size: 0.8rem; padding: 6px 12px;">Read</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="pub-card">
+                    <div class="p-image"></div>
+                    <div class="p-content">
+                        <div class="badges">
+                            <span class="badge" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;">Beginner</span>
+                            <span class="badge b-category">SQL</span>
+                        </div>
+                        <h3 style="font-size: 1.2rem; margin: 12px 0;">Optimizing Relational Queries for Startups</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px;">Structuring strictly constrained foreign keys and indexed querying for the SmartBiz business management architecture.</p>
+                        
+                        <div class="card-meta" style="font-size: 0.75rem;">
+                            <span>📅 Jun 22, 2026</span>
+                            <span>⏱️ 6 min read</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <div class="action-icons">
+                                <button class="icon-btn">❤️ 64</button>
+                            </div>
+                            <a href="/article.html?post=smartbiz" class="btn-secondary" style="font-size: 0.8rem; padding: 6px 12px;">Read</a>
+                        </div>
+                    </div>
+                </article>
+
             </div>
-            <div class="grid" id="projects-grid">
-                <!-- Injected via JavaScript -->
+        </section>
+
+        <!-- Publication Journey Timeline -->
+        <section class="fade-in">
+            <h2 class="section-header">Publication Journey</h2>
+            <div class="timeline">
+                <div class="t-item">
+                    <div class="t-year">2026</div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Advanced Systems Research</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary);">Focusing on enterprise FinTech infrastructure, streaming pipelines, and academic research via the University of the People.</p>
+                </div>
+                <div class="t-item">
+                    <div class="t-year">2025</div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Cloud & CI/CD Mastery</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary);">Documenting the transition from monolithic architectures to automated, containerized microservices.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Author & Newsletter Section -->
+        <section class="fade-in">
+            <div class="author-card">
+                <div class="a-avatar"></div>
+                <div class="a-details">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 4px;">Victor Kipruto Rop</h2>
+                    <div class="a-title">Data Engineer | Data Science Student | FinTech Infrastructure Builder</div>
+                    <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem; max-width: 600px;">
+                        Passionate about building scalable data platforms, streaming systems, and real-time financial technology solutions. I write about the engineering decisions, architectures, and theoretical foundations behind modern computing.
+                    </p>
+                    <div class="a-links">
+                        <a href="https://github.com/yourusername" class="btn-secondary" style="font-size: 0.8rem;">GitHub</a>
+                        <a href="#" class="btn-secondary" style="font-size: 0.8rem;">LinkedIn</a>
+                        <a href="#" class="btn-secondary" style="font-size: 0.8rem;">Resume</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="newsletter-card fade-in">
+                <div style="flex: 1;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px;">Engineering Insights. Delivered.</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Join the newsletter to receive architecture deep dives and data engineering tutorials directly to your inbox. No spam, just pure signal.</p>
+                    <form class="newsletter-input" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="senior.engineer@example.com" required>
+                        <button type="submit" class="btn-primary">Subscribe</button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
 
-    <script src="assets/js/app.js"></script>
+    <script>
+        // Intersection Observer for Fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Trigger KPI counters when visible
+                    if (entry.target.classList.contains('kpi-grid')) {
+                        runCounters();
+                        observer.unobserve(entry.target); // Run once
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Animated KPI Counters
+        function runCounters() {
+            const counters = document.querySelectorAll('.kpi-value');
+            const speed = 200; // Lower is faster
+
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const updateCount = () => {
+                    const count = +counter.innerText.replace(/,/g, '');
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc).toLocaleString();
+                        setTimeout(updateCount, 15);
+                    } else {
+                        counter.innerText = target.toLocaleString() + (target > 1000 ? '+' : '');
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // Category Pill Logic
+        const pills = document.querySelectorAll('.cat-pill');
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                // Filter logic would tie into your app.js renderGrid function here
+            });
+        });
+    </script>
 </body>
 </html>
