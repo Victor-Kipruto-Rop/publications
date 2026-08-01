@@ -1,0 +1,112 @@
+/* Hero Section */
+.hero {
+    padding: calc(var(--nav-height) + 120px) 0 80px;
+    text-align: left;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    max-width: 800px;
+    margin-bottom: 24px;
+}
+
+.hero p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-primary {
+    background: var(--text-primary);
+    color: var(--bg-base);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #d4d4d8;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    margin-left: 12px;
+}
+
+.btn-secondary:hover {
+    border-color: var(--border-hover);
+    background: var(--bg-surface);
+}
+
+/* Premium Cards */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    border-color: var(--border-hover);
+    background: var(--bg-surface-hover);
+    transform: translateY(-2px);
+}
+
+.card-meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    flex-grow: 1;
+}
+
+/* Markdown Article Overrides */
+.markdown-body {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 120px 0;
+}
+
+.markdown-body h1 { font-size: 2.5rem; margin-bottom: 16px; }
+.markdown-body h2 { margin: 48px 0 24px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px; }
+.markdown-body p { margin-bottom: 24px; color: var(--text-secondary); font-size: 1.1rem; }
+.markdown-body pre { background: var(--bg-surface) !important; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px; overflow-x: auto; margin-bottom: 24px; }
+.markdown-body code { font-family: var(--font-mono); font-size: 0.85rem; }
+
