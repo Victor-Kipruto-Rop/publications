@@ -1,81 +1,80 @@
-// Data Models for Project Showcase
-const portfolioData = {
-    projects: [
-        {
-            id: 'pesaguard',
-            title: 'PesaGuard',
-            category: 'FinTech / Security',
-            description: 'Minimalist financial security SaaS interface and corporate identity with integrated data visualization.',
-            tags: ['FinTech', 'SaaS', 'UI/UX', 'Data Vis'],
-            link: '/projects/pesaguard.html'
-        },
-        {
-            id: 'worknest',
-            title: 'WorkNest',
-            category: 'Web Application',
-            description: 'Scalable backend service deployment utilizing optimized cloud environments and automated release cycles.',
-            tags: ['Backend', 'Deployment', 'CI/CD'],
-            link: '/projects/worknest.html'
-        },
-        {
-            id: 'smartbiz',
-            title: 'SmartBiz',
-            category: 'Business Management',
-            description: 'Comprehensive business management system architecture and technical startup pitch documentation.',
-            tags: ['System Design', 'Architecture'],
-            link: '/projects/smartbiz.html'
-        },
-        {
-            id: 'mychama',
-            title: 'MyChama',
-            category: 'FinTech / Mobile',
-            description: 'Local financial group management application framework built for cross-platform accessibility.',
-            tags: ['Mobile Framework', 'FinTech'],
-            link: '/projects/mychama.html'
-        }
-    ]
-};
+// Database Simulation (Would normally be a JSON index file)
+const publications = [
+    {
+        id: 'data-engineering-at-scale',
+        title: 'Architecting Scalable Data Platforms',
+        date: '2026-08-01',
+        category: 'Data Engineering',
+        readTime: '8 min read',
+        summary: 'A deep dive into building fault-tolerant streaming systems using Apache Kafka and Snowflake.'
+    },
+    {
+        id: 'fintech-infrastructure',
+        title: 'Designing Secure FinTech Infrastructure',
+        date: '2026-07-15',
+        category: 'Architecture',
+        readTime: '12 min read',
+        summary: 'Lessons learned from structuring PesaGuard and building high-throughput microservices.'
+    }
+];
 
-// Render Featured Projects
-function renderProjects() {
-    const grid = document.getElementById('project-showcase');
+// Utility: Render Publication Cards (Used on Home and Publications pages)
+function renderPublicationGrid(elementId) {
+    const grid = document.getElementById(elementId);
     if (!grid) return;
 
-    portfolioData.projects.forEach(project => {
-        const card = document.createElement('article');
+    publications.forEach(pub => {
+        const card = document.createElement('a');
+        card.href = `/article.html?post=${pub.id}`;
         card.className = 'card';
         card.innerHTML = `
-            <div class="card-meta">${project.category}</div>
-            <h3 class="card-title">${project.title}</h3>
-            <p class="card-desc">${project.description}</p>
-            <div class="card-tags">
-                ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-            </div>
-            <a href="${project.link}" class="card-link">View Architecture &rarr;</a>
+            <div class="card-meta">${pub.category} • ${pub.readTime}</div>
+            <h3>${pub.title}</h3>
+            <p>${pub.summary}</p>
+            <div style="color: var(--text-primary); font-size: 0.9rem; font-weight: 500;">Read Article &rarr;</div>
         `;
         grid.appendChild(card);
     });
 }
 
-// Markdown Fetcher (For Publications)
-async function loadArticle(markdownFilePath) {
+// Utility: Load Single Markdown Article
+async function loadArticle() {
+    const contentDiv = document.getElementById('article-content');
+    if (!contentDiv) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('post');
+
+    if (!postId) {
+        contentDiv.innerHTML = '<h1>404 - Article Not Found</h1>';
+        return;
+    }
+
     try {
-        const response = await fetch(markdownFilePath);
-        const text = await response.text();
+        const response = await fetch(`/content/posts/${postId}.md`);
+        if (!response.ok) throw new Error('Post not found');
         
-        // Parse and sanitize markdown
-        const htmlContent = DOMPurify.sanitize(marked.parse(text));
-        document.getElementById('article-content').innerHTML = htmlContent;
+        const markdown = await response.text();
         
-        // Trigger syntax highlighting
-        if (window.Prism) Prism.highlightAll();
+        // Configure Marked.js options
+        marked.setOptions({
+            highlight: function(code, lang) {
+                if (Prism.languages[lang]) {
+                    return Prism.highlight(code, Prism.languages[lang], lang);
+                }
+                return code;
+            }
+        });
+
+        contentDiv.innerHTML = DOMPurify.sanitize(marked.parse(markdown));
     } catch (error) {
-        console.error("Error loading article:", error);
+        contentDiv.innerHTML = `<h1>Error Loading Article</h1><p>${error.message}</p>`;
     }
 }
 
-// Initialize
+// Initialize based on current page
 document.addEventListener('DOMContentLoaded', () => {
-    renderProjects();
+    renderPublicationGrid('latest-publications'); // Home page
+    renderPublicationGrid('all-publications'); // Publications page
+    loadArticle(); // Article page
 });
-
