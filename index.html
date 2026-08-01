@@ -3,43 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victor Kipruto Rop | Data Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/components.css">
+    <title>Victor Kipruto Rop | Data Engineer & FinTech Builder</title>
+    <meta name="description" content="Building scalable data platforms, streaming systems, and real-time financial technology solutions.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="ambient-background"></div>
+    <div class="ambient-glow"></div>
 
-    <nav class="glass-nav">
-        <div class="container nav-content">
-            <a href="/" class="brand">Victor Kipruto Rop</a>
+    <header class="glass-nav">
+        <nav class="nav-container">
+            <a href="/" class="brand-logo">VKR.</a>
             <div class="nav-links">
                 <a href="/publications.html">Publications</a>
-                <a href="#">Projects</a>
-                <a href="#">About</a>
+                <a href="/projects.html">Projects</a>
+                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
             </div>
-        </div>
-    </nav>
+            <a href="/publications.html" class="btn-primary">Read Latest</a>
+        </nav>
+    </header>
 
     <main class="container">
         <section class="hero">
-            <h1>Building Scalable <br><span style="color: var(--text-tertiary);">Data Platforms.</span></h1>
-            <p>Data Engineer, Data Science Student, and FinTech Infrastructure Builder specializing in streaming systems, cloud infrastructure, and real-time financial solutions.</p>
-            <div>
-                <a href="/publications.html" class="btn btn-primary">Read Publications</a>
-                <a href="https://github.com/yourusername" class="btn btn-secondary">GitHub Profile</a>
+            <div class="status-badge">
+                <span class="pulse"></span> Deploying robust data infrastructure
+            </div>
+            <h1 class="hero-title">Engineering the Future of <br><span class="gradient-text">Financial Infrastructure.</span></h1>
+            <p class="hero-subtitle">
+                Data Engineer, FinTech Infrastructure Builder, and Data Science student. Specializing in scalable data platforms, streaming systems, cloud architecture, and real-time solutions.
+            </p>
+            <div class="hero-actions">
+                <a href="#latest-writing" class="btn-primary">Explore Writing</a>
+                <a href="#project-showcase" class="btn-secondary">View Case Studies</a>
             </div>
         </section>
 
-        <section style="padding-bottom: 120px;">
-            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border-subtle); padding-bottom: 16px;">
-                <h2>Latest Writing</h2>
-                <a href="/publications.html" style="color: var(--text-secondary); font-size: 0.9rem;">View all &rarr;</a>
+        <section id="latest-writing" class="section-padding">
+            <div class="section-header">
+                <h2>Latest Publications</h2>
             </div>
-            <div class="grid" id="latest-publications">
-                <!-- Injected via app.js -->
+            <div class="grid" id="publications-grid">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <section id="project-showcase" class="section-padding">
+            <div class="section-header">
+                <h2>Infrastructure Projects</h2>
+            </div>
+            <div class="grid" id="projects-grid">
+                <!-- Injected via JavaScript -->
             </div>
         </section>
     </main>
