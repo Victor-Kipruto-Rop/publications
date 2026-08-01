@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article | Victor Kipruto Rop</title>
+    <title>Publication | Victor Kipruto Rop</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <!-- Prism.js for syntax highlighting (Okaidia dark theme) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <nav class="glass-nav">
-        <div class="container nav-content">
-            <a href="/" class="brand">Victor Kipruto Rop</a>
+    <div class="ambient-glow"></div>
+
+    <header class="glass-nav">
+        <nav class="nav-container">
+            <a href="/" class="brand-logo">VKR.</a>
             <div class="nav-links">
-                <a href="/publications.html" style="color: var(--text-primary);">Publications</a>
-                <a href="#">Projects</a>
-                <a href="#">About</a>
+                <a href="/">Home</a>
+                <a href="/publications.html" class="active">Publications</a>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <main class="container">
         <article id="article-content" class="markdown-body">
-            <!-- Markdown content injected here via app.js -->
-            <div style="text-align: center; color: var(--text-tertiary); margin-top: 100px;">Loading architecture...</div>
+            <div class="loader">Loading engineering documentation...</div>
         </article>
     </main>
 
-    <!-- Dependencies -->
+    <!-- Dependencies for Markdown Parsing and Syntax Highlighting -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
@@ -39,4 +36,3 @@
     <script src="assets/js/app.js"></script>
 </body>
 </html>
-
