@@ -1,68 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victor Kipruto Rop | Data Engineer & FinTech Infrastructure Builder</title>
-    
-    <!-- SEO & Open Graph -->
-    <meta name="description" content="Building scalable data platforms, streaming systems, and real-time financial technology solutions.">
-    <meta property="og:title" content="Victor Kipruto Rop - Engineering Publication">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://yourusername.github.io/">
-    
-    <!-- Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
+    <title>Victor Kipruto Rop | Data Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
-    <div class="ambient-glow"></div> <!-- Linear-inspired background glow -->
+    <div class="ambient-background"></div>
 
-    <header class="glass-nav">
-        <nav class="nav-container">
-            <a href="/" class="brand-logo">VKR.</a>
+    <nav class="glass-nav">
+        <div class="container nav-content">
+            <a href="/" class="brand">Victor Kipruto Rop</a>
             <div class="nav-links">
                 <a href="/publications.html">Publications</a>
-                <a href="/projects.html">Projects</a>
-                <a href="/research.html">Research</a>
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+                <a href="#">Projects</a>
+                <a href="#">About</a>
             </div>
-            <button class="btn-primary" id="copy-rss">Subscribe RSS</button>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main id="app-root">
+    <main class="container">
         <section class="hero">
-            <div class="hero-content">
-                <div class="status-badge">
-                    <span class="pulse"></span> Open to new opportunities
-                </div>
-                <h1 class="hero-title">Engineering the Future of <span class="gradient-text">Financial Infrastructure</span>.</h1>
-                <p class="hero-subtitle">
-                    Data Engineer, FinTech Infrastructure Builder, and Data Science student at the University of the People. Specializing in scalable data platforms, streaming systems, and enterprise architecture.
-                </p>
-                <div class="hero-actions">
-                    <a href="/publications.html" class="btn-primary">Read Publications</a>
-                    <a href="/projects.html" class="btn-secondary">View Projects</a>
-                </div>
+            <h1>Building Scalable <br><span style="color: var(--text-tertiary);">Data Platforms.</span></h1>
+            <p>Data Engineer, Data Science Student, and FinTech Infrastructure Builder specializing in streaming systems, cloud infrastructure, and real-time financial solutions.</p>
+            <div>
+                <a href="/publications.html" class="btn btn-primary">Read Publications</a>
+                <a href="https://github.com/yourusername" class="btn btn-secondary">GitHub Profile</a>
             </div>
         </section>
 
-        <section class="featured-grid" id="project-showcase">
-            <!-- Populated via JS -->
+        <section style="padding-bottom: 120px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border-subtle); padding-bottom: 16px;">
+                <h2>Latest Writing</h2>
+                <a href="/publications.html" style="color: var(--text-secondary); font-size: 0.9rem;">View all &rarr;</a>
+            </div>
+            <div class="grid" id="latest-publications">
+                <!-- Injected via app.js -->
+            </div>
         </section>
     </main>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
-    <script src="assets/js/app.js" type="module"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
-
