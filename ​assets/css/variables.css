@@ -1,0 +1,22 @@
+:root {
+    /* Color Palette - Deep Dark Theme */
+    --bg-primary: #050505;
+    --bg-secondary: #111111;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #EDEDED;
+    --text-secondary: #A0A0A0;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+    
+    /* Typography */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    /* Spacing & Radii */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 24px;
+    
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
