@@ -1,36 +1,37 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background-color: var(--bg-primary);
+    background-color: var(--bg-base);
     color: var(--text-primary);
     font-family: var(--font-sans);
-    line-height: 1.6;
-    margin: 0;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Linear-inspired Ambient Background */
-.ambient-glow {
-    position: fixed;
-    top: -20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80vw;
-    height: 50vh;
-    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* Typography Enhancements */
-h1, h2, h3 {
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+/* Typography Base */
+h1, h2, h3, h4 {
+    color: var(--accent-primary);
+    letter-spacing: -0.04em;
     font-weight: 600;
+    line-height: 1.2;
 }
 
-.gradient-text {
-    background: linear-gradient(to right, #fff, #888);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+/* Layout Utilities */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
 /* Glassmorphism Navigation */
@@ -38,27 +39,48 @@ h1, h2, h3 {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(5, 5, 5, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-color);
-    z-index: 100;
+    height: var(--nav-height);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-subtle);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
 }
 
-/* Enterprise Quality Cards */
-.card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 24px;
-    transition: var(--transition-smooth);
-    position: relative;
-    overflow: hidden;
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+.brand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.05em;
 }
 
+.nav-links a {
+    color: var(--text-secondary);
+    margin-left: 32px;
+    font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+/* Ambient Glow Background */
+.ambient-background {
+    position: fixed;
+    top: -20vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 60vh;
+    background: radial-gradient(ellipse at top, rgba(255,255,255,0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+}
